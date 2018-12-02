@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Factorial GmbH, Hamburg">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Available tasks - Phabalicious</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/version-select.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Available tasks";
+    var mkdocs_page_input_path = "available-tasks.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Phabalicious</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">How does phabalicious work in two sentences</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation of needed dependencies</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../usage/">Running phabalicious</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Available tasks</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#-config">--config</a></li>
+    
+
+    <li class="toctree-l2"><a href="#-offline">--offline</a></li>
+    
+
+    <li class="toctree-l2"><a href="#-fabfile">--fabfile</a></li>
+    
+
+    <li class="toctree-l2"><a href="#-blueprint">--blueprint</a></li>
+    
+
+    <li class="toctree-l2"><a href="#list">list</a></li>
+    
+
+    <li class="toctree-l2"><a href="#help">help</a></li>
+    
+
+    <li class="toctree-l2"><a href="#listhosts">list:hosts</a></li>
+    
+
+    <li class="toctree-l2"><a href="#listblueprints">list:blueprints</a></li>
+    
+
+    <li class="toctree-l2"><a href="#about">about</a></li>
+    
+
+    <li class="toctree-l2"><a href="#output">output</a></li>
+    
+
+    <li class="toctree-l2"><a href="#getproperty">get:property</a></li>
+    
+
+    <li class="toctree-l2"><a href="#version">version</a></li>
+    
+
+    <li class="toctree-l2"><a href="#deploy">deploy</a></li>
+    
+
+    <li class="toctree-l2"><a href="#reset">reset</a></li>
+    
+
+    <li class="toctree-l2"><a href="#install">install</a></li>
+    
+
+    <li class="toctree-l2"><a href="#installfrom">install:from</a></li>
+    
+
+    <li class="toctree-l2"><a href="#backup">backup</a></li>
+    
+
+    <li class="toctree-l2"><a href="#listbackups">list:backups</a></li>
+    
+
+    <li class="toctree-l2"><a href="#restore">restore</a></li>
+    
+
+    <li class="toctree-l2"><a href="#getbackup">get:backup</a></li>
+    
+
+    <li class="toctree-l2"><a href="#copy-from">copy-from</a></li>
+    
+
+    <li class="toctree-l2"><a href="#drush">drush</a></li>
+    
+
+    <li class="toctree-l2"><a href="#drupal">drupal</a></li>
+    
+
+    <li class="toctree-l2"><a href="#platform">platform</a></li>
+    
+
+    <li class="toctree-l2"><a href="#getfile">get:file</a></li>
+    
+
+    <li class="toctree-l2"><a href="#putfile">put:file</a></li>
+    
+
+    <li class="toctree-l2"><a href="#getfiles-dump">get:files-dump</a></li>
+    
+
+    <li class="toctree-l2"><a href="#getsql-dump">get:sql-dump</a></li>
+    
+
+    <li class="toctree-l2"><a href="#restoresql-from-file">restore:sql-from-file</a></li>
+    
+
+    <li class="toctree-l2"><a href="#script">script</a></li>
+    
+
+    <li class="toctree-l2"><a href="#docker">docker</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#copysshkeys">copySSHKeys</a></li>
+        
+            <li><a class="toctree-l3" href="#waitforservices">waitForServices</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#start-remote-access">start-remote-access</a></li>
+    
+
+    <li class="toctree-l2"><a href="#appscaffold">app:scaffold</a></li>
+    
+
+    <li class="toctree-l2"><a href="#appcreate">app:create</a></li>
+    
+
+    <li class="toctree-l2"><a href="#appupdate">app:update</a></li>
+    
+
+    <li class="toctree-l2"><a href="#appdestroy">app:destroy</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configuration/">Structure of the configuration file</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../docker-integration/">Docker integration</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../local-overrides/">Local overrides</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../contribute/">Contributing to Phabalicious</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Changelog/">Changelog</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Phabalicious</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Available tasks</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/factorial-io/phabalicious/edit/develop/docs/docs/available-tasks.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="-config">--config</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt;
+</code></pre>
+
+<p>Most of the phabalicious tasks need the option <code>config</code>. Setting the option will lookup <code>&lt;your-config&gt;</code> in the <code>hosts</code>-section of your <code>fabfile.yaml</code> and the data will be used to run your task with the correct environment.</p>
+<h2 id="-offline">--offline</h2>
+<pre><code class="shell">phab --offline=1 --config=&lt;your-config&gt; &lt;task&gt;
+</code></pre>
+
+<p>This task will disable remote configuration files. As phabalicious keeps copies of remote configuration-files in <code>~/.phabalicious</code> it will try to load the configuration-file from there.</p>
+<h2 id="-fabfile">--fabfile</h2>
+<pre><code class="shell">Phab --fabfile=&lt;path-to-your-fabfile ...
+</code></pre>
+
+<p>This will try to load the <code>fabfile.yaml</code> from a different location: <code>path-to-your-fabfile</code></p>
+<h2 id="-blueprint">--blueprint</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; --blueprint=&lt;branch-name&gt; &lt;task&gt;
+</code></pre>
+
+<p><code>blueprint</code> will try to load a blueprint-template from the fabfile.yaml and apply the input given as <code>&lt;branch-name&gt;</code> to the template. This is helpful if you want to create/ use a new configuration which has some dynamic parts like the name of the database, the name of the docker-container, etc.</p>
+<p>The task will look first in the host-config for the property <code>blueprint</code>, afterwards in the dockerHost-configuration <code>&lt;config-name&gt;</code> and eventually in the global namespace. If you want to print the generated configuration as yaml, then use the <code>output</code>-command. The computed configuration is used as the current configuration, that means, you can run other tasks against the generated configuration.</p>
+<p><strong>Available replacement-patterns</strong> and what they do.</p>
+<p><em>Input is <code>feature/XY-123-my_Branch-name</code>, the project-name is <code>Example project</code></em></p>
+<table>
+<thead>
+<tr>
+<th>Replacement Pattern</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%slug.with-hyphens.without-feature%</strong></td>
+<td>xy-123-my-branch-name</td>
+</tr>
+<tr>
+<td><strong>%slug.with-hyphens%</strong></td>
+<td>feature-xy-123-my-branch-name</td>
+</tr>
+<tr>
+<td><strong>%project-slug.with-hypens%</strong></td>
+<td>example-project</td>
+</tr>
+<tr>
+<td><strong>%slug%</strong></td>
+<td>featurexy123mybranchname</td>
+</tr>
+<tr>
+<td><strong>%project-slug%</strong></td>
+<td>exampleproject</td>
+</tr>
+<tr>
+<td><strong>%project-identifier%</strong></td>
+<td>Example project</td>
+</tr>
+<tr>
+<td><strong>%identifier%</strong></td>
+<td>feature/XY-123-my_Branch-name</td>
+</tr>
+<tr>
+<td><strong>%slug.without-feature%</strong></td>
+<td>xy123mybranchname</td>
+</tr>
+</tbody>
+</table>
+<p>Here's an example blueprint:</p>
+<pre><code class="yaml">blueprint:
+  inheritsFrom: http://some.host/data.yaml
+  configName: '%project-slug%-%slug.with-hyphens.without-feature%.some.host.tld'
+  branch: '%identifier%'
+  database:
+    name: '%slug.without-feature%_mysql'
+  docker:
+    projectFolder: '%project-slug%--%slug.with-hyphens.without-feature%'
+    vhost: '%project-slug%-%slug.without-feature%.some.host.tld'
+    name: '%project-slug%%slug.without-feature%_web_1'
+</code></pre>
+
+<p>And the output of <code>phab blueprint:feature/XY-123-my_Branch-name,configNamy=&lt;config-name&gt;,output=true</code> is</p>
+<pre><code class="yaml">hosts:
+  phbackend-xy-123-my-branch-name.some.host.tld:
+    branch: feature/XY-123-my_Branch-name
+    configName: phbackend-xy-123-my-branch-name.some.host.tld
+    database:
+      name: xy123mybranchname_mysql
+    docker:
+      name: phbackendxy123mybranchname_web_1
+      projectFolder: phbackend--xy-123-my-branch-name
+      vhost: phbackend-xy123mybranchname.some.host.tld
+    inheritsFrom: http://some.host/data.yaml
+</code></pre>
+
+<p><strong>Note</strong></p>
+<p>You can create new configurations via the global <code>blueprints</code>-settings:</p>
+<pre><code>blueprints:
+  - configName: mbb
+    variants:
+      - de
+      - en
+      - it
+      - fr
+</code></pre>
+
+<p>will create 4 new configurations using the blueprint-config <code>mbb</code>.</p>
+<h2 id="list">list</h2>
+<pre><code class="shell">phab list
+</code></pre>
+
+<p>This command will list all available tasks. You can get specific help for a task with the next command:</p>
+<h2 id="help">help</h2>
+<pre><code class="shell">phab help:&lt;task&gt;
+</code></pre>
+
+<p>Will display all available arguments and options for that given <code>&lt;task&gt;</code> and some explanatory text.</p>
+<h2 id="listhosts">list:hosts</h2>
+<pre><code class="shell">phab list:hosts
+</code></pre>
+
+<p>This task will list all your hosts defined in your <code>hosts</code>-section of your <code>fabfile.yaml</code>.</p>
+<h2 id="listblueprints">list:blueprints</h2>
+<pre><code class="shell">Phab list:blueprints
+</code></pre>
+
+<p>This command will list all found blueprint configurations.</p>
+<h2 id="about">about</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; about
+</code></pre>
+
+<p>will display the configuration of host <code>&lt;your-config&gt;</code>.</p>
+<h2 id="output">output</h2>
+<pre><code class="shell">Phab config=&lt;your-config&gt; --blueprint=&lt;your-blueprint-config&gt; output
+</code></pre>
+
+<p>This command will print the computed configuration from a blueprint as yams. You can copy it and paste it back to the fabfile to make it permanent. </p>
+<h2 id="getproperty">get:property</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; get:property &lt;name-of-property&gt;
+</code></pre>
+
+<p>This will print the property-value to the console. Suitable if you want to use phabalicious from within other scripts.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab --config=mbb get:property host</code> will print the hostname of configuration <code>mbb</code>.</li>
+<li><code>phab -cmbb get:property docker.service</code> will print the service of the docker-configuration of <code>mbb</code>.</li>
+</ul>
+<h2 id="version">version</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; version
+</code></pre>
+
+<p>This command will display the installed version of the code on the installation <code>&lt;your-config&gt;</code>.</p>
+<p><strong>Available methods</strong>:</p>
+<ul>
+<li><code>git</code>. The task will get the installed version via <code>git describe</code>, so if you tag your source properly (.e.g. by using  git flow), you'll get a nice version-number.</li>
+</ul>
+<h2 id="deploy">deploy</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; deploy
+phab --config=&lt;your-config&gt; deploy &lt;branch-to-deploy&gt;
+</code></pre>
+
+<p>This task will deploy the latest code to the given installation. If the installation-type is not <code>dev</code> or <code>test</code> the <code>backupDB</code>-task is run before the deployment starts. If <code>&lt;branch-to-deploy&gt;</code> is stated the specific branch gets deployed.</p>
+<p>After a successfull deployment the <code>reset</code>-task will be run.</p>
+<p><strong>Available methods:</strong></p>
+<ul>
+<li><code>git</code> will deploy to the latest commit for the given branch defined in the host-configuration. Submodules will be synced, and updated.</li>
+<li><code>platform</code> will push the current branch to the <code>platform</code> remote, which will start the deployment-process on platform.sh</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>phab --config=mbb deploy</code> will deploy the app via the config found in <code>mob</code></li>
+<li><code>phab --config=mbb deploy feature/some-feature</code> will deploy the branch <code>feature/some-feature</code> regardless the setting in the fabfile.</li>
+</ul>
+<h2 id="reset">reset</h2>
+<pre><code class="shell">phab config=&lt;your-config&gt; reset
+</code></pre>
+
+<p>This task will reset your installation</p>
+<p><strong>Available methods:</strong></p>
+<ul>
+<li><code>composer</code> will run <code>composer install</code> to update any dependencies before doing the reset</li>
+<li><code>drush</code> will</li>
+<li>set the site-uuid from fabfile.yaml (drupal 8)</li>
+<li>enable a deployment-module if any stated in the fabfile.yaml</li>
+<li>enable modules listed in file <code>modules_enabled.txt</code></li>
+<li>disable modules listed in file <code>modules_disabled.txt</code></li>
+<li>revert features (drupal 7) if <code>revertFeatures</code> is true / import the configuration (drupal 8),</li>
+<li>run update-hooks</li>
+<li>and does a cache-clear.</li>
+<li>if your host-type is <code>dev</code> the password gets reset to admin/admin</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>phab --config=mbb reset</code> will reset the installation and will not reset the password.</li>
+</ul>
+<h2 id="install">install</h2>
+<pre><code class="shell">phab config=&lt;your-config&gt; install
+</code></pre>
+
+<p>This task will install a new Drupal installation with the minimal-distribution. You can install different distributions, see the examples.</p>
+<p><strong>Available methods:</strong></p>
+<ul>
+<li><code>drush</code></li>
+</ul>
+<p><strong>Configuration:</strong></p>
+<p>You can add a <code>installOptions</code>-section to your fabfile.yaml. Here's an example:</p>
+<pre><code class="yaml">installOptions:
+  distribution: thunder
+  locale: es
+</code></pre>
+
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>phab --config=mbb install</code> will install a new Drupal installation</li>
+<li><code>phab --config=mbb install --skip-reset=1</code> will install a new Drupal installation and will not run the reset-task afterwards.</li>
+</ul>
+<h2 id="installfrom">install:from</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; install:from &lt;source-config&gt; &lt;what&gt;
+</code></pre>
+
+<p>This task will install a new installation (see the <code>install</code>-task) and afterwards will do a <code>copyFrom</code>. The <code>reset</code>-task after the <code>install</code>-task will be skipped and executed after the <code>copyFrom</code>-task. You can limit, what should be copied from: <code>db</code> or <code>files</code>. If <code>&lt;what&gt;</code> is omitted, then everything is copied from.</p>
+<p><strong>See also:</strong></p>
+<ul>
+<li>install</li>
+<li>copyFrom</li>
+</ul>
+<h2 id="backup">backup</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; backup &lt;what&gt;
+</code></pre>
+
+<p>This command will backup your files and database into the specified <code>backup</code>-directory. The file-names will include configuration-name, a timestamp and the git-SHA1. Every backup can be referenced by its filename (w/o extension) or, when git is abailable via the git-commit-hash.</p>
+<p>If <code>&lt;what&gt;</code> is omitted, files and db gets backupped, you can limit this by providing <code>db</code> and/ or <code>files</code>.</p>
+<p><strong>Available methods:</strong></p>
+<ul>
+<li><code>git</code> will prepend the file-names with a hash of the current revision.</li>
+<li><code>files</code> will tar all files in the <code>filesFolder</code> and save it into the <code>backupFolder</code></li>
+<li><code>drush</code> will dump the databases and save it to the <code>backupFolder</code></li>
+</ul>
+<p><strong>Configuration:</strong></p>
+<ul>
+<li>your host-configuration will need a <code>backupFolder</code> and a <code>filesFolder</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab -cmbb backup</code> will backup everything</li>
+<li><code>phab -cmbb backup files</code> will backup only public and private files.</li>
+<li><code>phan -cmbb backup db</code> will backup the database only.</li>
+</ul>
+<h2 id="listbackups">list:backups</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; list:backups
+</code></pre>
+
+<p>This command will print all available backups to the console.</p>
+<h2 id="restore">restore</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; restore &lt;commit-hash|file-name&gt;
+</code></pre>
+
+<p>This will restore a backup-set. A backup-set consists typically of a database-dump and a gzipped file-archive. You can a list of candidates via <code>phab --config=&lt;config&gt; list:backups</code></p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li><code>git</code> git will checkout the given hash encoded in the filename.</li>
+<li><code>files</code> all files will be restored. An existing files-folder will be renamed for safety reasons.</li>
+<li><code>drush</code> will import the database-dump.</li>
+</ul>
+<h2 id="getbackup">get:backup</h2>
+<pre><code class="shell">phab --config:&lt;config&gt; get:backup &lt;commit-hash|file-name&gt;
+</code></pre>
+
+<p>This command will copy a remote backup-set to your local computer into the current working-directory.</p>
+<p><strong>See also:</strong></p>
+<ul>
+<li>restore</li>
+<li>backup</li>
+</ul>
+<h2 id="copy-from">copy-from</h2>
+<pre><code class="shell">phab --config=&lt;dest-config&gt; copy-from &lt;source-config&gt; &lt;what&gt;
+</code></pre>
+
+<p>This task will copy all files via rsync from <code>source-config</code> to <code>dest-config</code> and will dump the database from <code>source-config</code> and restore it to <code>dest-config</code> when <code>&lt;what&gt;</code> is omitted.</p>
+<p>After that the <code>reset</code>-task gets executed. This is the ideal task to copy a complete installation from one host to another.</p>
+<p>You can limit what to copy by adding <code>db</code> or <code>files</code>  as arguments.</p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li><code>ssh</code> will create all necessary tunnels to access the hosts.</li>
+<li><code>files</code> will rsync all new and changed files from source to dest</li>
+<li><code>drush</code> will dump the database and restore it on the dest-host.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab -cmbb copy-from remote-host</code> will copy db and files from <code>remote-host</code> to <code>mbb</code></li>
+<li><code>phab -cmbb copy-from remote-host db</code> will copy only the db  from <code>remote-host</code> to <code>mbb</code></li>
+<li><code>phab -cmbb copy-from remote-host</code> will copy only the files from <code>remote-host</code> to <code>mbb</code></li>
+</ul>
+<h2 id="drush">drush</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; drush &quot;&lt;drush-command&gt;&quot;
+</code></pre>
+
+<p>This task will execute the <code>drush-command</code> on the remote host specified in <config>. Please note, that you'll have to quote the drush-command when it contains spaces. </p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li>Only available for the <code>drush</code>-method</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab --config=staging drush "cc all -y"</code></li>
+<li><code>phab --config=local drush fra</code></li>
+</ul>
+<h2 id="drupal">drupal</h2>
+<p>This task will execute a drupal-console task on the remote host. Please note, that you'll have to quote the command when it contains spaces.</p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li>Only available for the <code>drupal</code>-method</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab --config=local drupal cache:rebuild</code></li>
+<li><code>phab --config=local drupal "generate:module --module helloworld"</code></li>
+</ul>
+<h2 id="platform">platform</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; platform &lt;command&gt;
+</code></pre>
+
+<p>Runs a specific platform-command.</p>
+<h2 id="getfile">get:file</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; get:file &lt;path-to-remote-file&gt;
+</code></pre>
+
+<p>Copy a remote file to the current working directory of your current machine.</p>
+<h2 id="putfile">put:file</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; put:file &lt;path-to-local-file&gt;
+</code></pre>
+
+<p>Copy a local file to the tmp-folder of a remote machine.</p>
+<p><strong>Configuration</strong></p>
+<ul>
+<li>this command will use the <code>tmpFolder</code>-host-setting for the destination directory.</li>
+</ul>
+<h2 id="getfiles-dump">get:files-dump</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; get:files-dump
+</code></pre>
+
+<p>This task will tar all files in <code>filesFolder</code> and <code>privateFilesFolder</code> and download it to the local computer.</p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li>currently only implemented for the <code>files</code>-method</li>
+</ul>
+<h2 id="getsql-dump">get:sql-dump</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; get:sql-dump
+</code></pre>
+
+<p>Get a current dump of the remote database and copy it to the local machine into the current working directory.</p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li>currently only implemented for the <code>drush</code>-method</li>
+</ul>
+<h2 id="restoresql-from-file">restore:sql-from-file</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; restore:sql-from-file &lt;path-to-local-sql-dump&gt;
+</code></pre>
+
+<p>This command will copy the dump-file <code>path-to-local-sql-dump</code> to the remote machine and import it into the database.</p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li>currently only implemented for the <code>drush</code>-method</li>
+</ul>
+<h2 id="script">script</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; script &lt;script-name&gt;
+</code></pre>
+
+<p>This command will run custom scripts on a remote machine. You can declare scripts globally or per host. If the <code>script-name</code> can't be found in the fabfile.yaml you'll get a list of all available scripts.</p>
+<p>Additional arguments get passed to the script. See the examples.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab --config=mbb script</code>. List all available scripts for configuration <code>mbb</code></li>
+<li><code>phab --config=mbb script behat</code> Run the <code>behat</code>-script</li>
+<li><code>phab --config=mbb script behat "--name="Login feature" --format=pretty"</code> Run the behat-test, apply <code>--name</code> and <code>--format</code> parameters to the script</li>
+</ul>
+<p>The <code>script</code>-command is rather powerful, have a read about it in the extra section.</p>
+<h2 id="docker">docker</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; docker &lt;docker-task&gt;
+</code></pre>
+
+<p>The docker command is suitable for orchestrating and administering remote instances of docker-containers. The basic setup is that your host-configuration has a <code>docker</code>-section, which contains a <code>configuration</code>-key. The <code>dockerHosts</code>-section of your fabfile.yaml has a list of tasks which are executed on the "parent-host" of the configuration. Please have a look at the docker-section for more information.</p>
+<p>Most of the time the docker-container do not have a public or known ip-address. phabalicious tries to find out the ip-address of a given instance and use that for communicating with its services.</p>
+<p>There are three implicit tasks available:</p>
+<h3 id="copysshkeys">copySSHKeys</h3>
+<pre><code class="shell">phab --config=mbb docker copySSHKeys
+</code></pre>
+
+<p>This will copy the ssh-keys into the docker-instance. You'll need to provide the paths to the files via the three configurations:
+<em> <code>dockerKeyFile</code>, the path to the private ssh-key to use.
+</em> <code>dockerAuthorizedKeyFile</code>, the path to the file for <code>authoried_keys</code> or a url.
+* <code>dockerKnownHostsFile</code>, the path to the file for <code>known_hosts</code></p>
+<p>As docker-container do not have any state, this task is used to copy any necessary ssh-configuration into the docker-container, so communication per ssh does not need any passwords.</p>
+<h3 id="waitforservices">waitForServices</h3>
+<p>This task will try to run <code>supervisorctl status</code> in the container and  waits until all services are running. This is useful in scripts to wait for any services that need some time to start up. Obviously this task depends on <code>supervisorctl</code>.</p>
+<h2 id="start-remote-access">start-remote-access</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; start-remote-access
+phab --config=&lt;config&gt; start-remote-access --port=&lt;port&gt; --public-port=&lt;public-port&gt; --public-ip=&lt;public-ip&gt;
+</code></pre>
+
+<p>This task will run a command to forward a local port to a remote port. It starts a new ssh-session which will do the forwarding. When finished, type <code>exit</code>.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>phab --config=mbb start-remote-access</code> will forward <code>localhost:8888</code> to port <code>80</code> of the docker-container</li>
+<li><code>phab --config=mbb start-remote-access --port=3306 --publicPort=33060</code> will forward <code>localhost:33060</code>to port <code>3306</code> </li>
+</ul>
+<h2 id="appscaffold">app:scaffold</h2>
+<pre><code class="shell">phab app:scaffold &lt;path/url-to-scaffold-files&gt; --name=&lt;name of app&gt; --short-name=&quot;short name of app&quot; --output=&lt;path to output&gt; --override=&quot;1|0&quot;
+</code></pre>
+
+<p>This command will scaffold a new project from a set of scaffold-files. See the dedicated documentation for how to create these files.</p>
+<p><strong>Examples</strong>
+<em> <code>phab app:scaffold path/to/scaffold.yml</code> will scaffold the app in the current folder. Phab will ask for the name and the short-name
+</em> <code>phab app:scaffold path/to/scaffold.yml --name="Hello World" --short-name="HW"</code> will scaffold the app with name "Hello World and short-name "HW"
+* <code>phab app:scaffold https://config.factorial.io/scaffold/drupal/d8.yml</code> will scaffold a Drupal app from the remote configuration.</p>
+<h2 id="appcreate">app:create</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; app:create
+</code></pre>
+
+<p>This command will create a new app instance from a given config. Most useful with the usage of blueprints. </p>
+<p>The creation is done in several steps which can be customized. For a deeper explanation please have a look into the dedicated documentation</p>
+<h2 id="appupdate">app:update</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; app:update
+</code></pre>
+
+<p>This command will update the code-base to the latest changes. When using the crush-method, drupal core will be updated to the latest version, if using <code>composer</code> then composer will be used to update the existing code.</p>
+<p><strong>Available methods</strong></p>
+<ul>
+<li><code>drush</code> will update Drupal-core, but only if <code>composer</code> is not used</li>
+<li><code>composer</code> will update the codebase by running <code>composer update</code></li>
+</ul>
+<h2 id="appdestroy">app:destroy</h2>
+<pre><code class="shell">phab --config=&lt;config&gt; app:destroy
+</code></pre>
+
+<p>This command will destroy an app from a given configuration. The process has several steps. Caution: there will be no backup!</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../configuration/" class="btn btn-neutral float-right" title="Structure of the configuration file">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../usage/" class="btn btn-neutral" title="Running phabalicious"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© 2018 Factorial GmbH, Hamburg</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/factorial-io/phabalicious/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../usage/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/version-select.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

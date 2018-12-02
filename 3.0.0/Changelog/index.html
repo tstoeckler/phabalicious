@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Factorial GmbH, Hamburg">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Changelog - Phabalicious</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/version-select.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Changelog";
+    var mkdocs_page_input_path = "Changelog.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Phabalicious</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">How does phabalicious work in two sentences</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation of needed dependencies</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../usage/">Running phabalicious</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../available-tasks/">Available tasks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configuration/">Structure of the configuration file</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../docker-integration/">Docker integration</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../local-overrides/">Local overrides</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../contribute/">Contributing to Phabalicious</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Changelog</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#changelog">Changelog</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#300">3.0.0</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Phabalicious</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Changelog</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/factorial-io/phabalicious/edit/develop/docs/docs/Changelog.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="changelog">Changelog</h1>
+<h2 id="300">3.0.0</h2>
+<p>Fabalicious is now rewritten in PHP, so we changed the name to make the separation more clear. Phabalicious is now a symfony console app and uses a more unix-style approach to arguments and options. E.g. instead of <code>config:&lt;name-of-config&gt;</code> use <code>--config=&lt;name-of-config&gt;</code></p>
+<h3 id="why-the-rewrite">Why the rewrite</h3>
+<p>Python on Mac OS X is hard, multiple versions, multiple locations etc. Every machine needed some magic hands to get fabalicious working on it. Fabalicious itself is written in python 2.x, but the world is moving on to python 3. Fabric, the underlying lib we used for fabalicious is also moving forward to version 2 which is not backwards compatible yet with fabric 1. On the other side we are now maintaining more and more containerized setups where you do not need ssh to run commands in. A popular example is docker and its whole universe. Fabric couldn't help us here, and fabric is moving into a different direction.</p>
+<p>And as a specialized Drupal boutique we write PHP all day long. To make it easier for our team to improve the toolset by ourselves and get help from the rest of the community, using PHP/ Symfony as a base for the rewrite was a no-brainer.</p>
+<p>Why not use existing tools, like <a href="https://robo.li/">robo</a>, <a href="https://deployer.org/">deployer</a> or other tools? These tools are valuable instruments in our tool-belt, but none of them fit our requirements completely. We see phabalicious as a meta-tool integrating with all of them in nice and easy way. We need a lot of flexibility as we need to support a lot of different tech- and hosting-stacks, so we decided to port fabalicious to phabalicious.</p>
+<p>There's a lot of change going on here, but the structure of the fabfile.yaml is still the same.</p>
+<h3 id="changed-command-line-options-and-arguments">Changed command line options and arguments</h3>
+<p>As fabric (the underlying lib we used for fabalicious) is quite different to symfony console apps there are more subtle changes. For example you can invoke only one task per run. With fabalicious it was easy to run multiple commands:</p>
+<pre><code class="shell">fab config:mbb docker:run reset ssh
+</code></pre>
+
+<p>This is not possible anymore with phabalicious, you need to run the commands in sequence. If you need that on a regular basis, a <code>script</code> might be a good workaround.</p>
+<p>Most notably the handling of arguments and options has changed a lot. Fabric gave us a lot of flexibility here, symfony is more strict, but has on the other side some advantages for example self-documenting all possible arguments and options for a given task.</p>
+<h4 id="some-examples">Some examples</h4>
+<table>
+<thead>
+<tr>
+<th>Old syntax</th>
+<th>New syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fab config:mbb about</code></td>
+<td><code>phab about --config mbb</code></td>
+</tr>
+<tr>
+<td><code>fab config:mbb about</code></td>
+<td><code>phab --config=mbb about</code></td>
+</tr>
+<tr>
+<td><code>fab config:mbb blueprint:de deploy</code></td>
+<td><code>phab deploy --config mbb --blueprint de</code></td>
+</tr>
+<tr>
+<td><code>fab config:mbb blueprint:de deploy</code></td>
+<td><code>phab --config=mbb --blueprint=de mbb</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>
+<p>Introduction of ShellProviders, they will provide a shell, to run scripts into. Currently implemented are</p>
+<ul>
+<li><code>local</code>, run the shell-commands on your local host</li>
+<li><code>ssh</code>, runs the shell-commands on a remote host.</li>
+</ul>
+<p>Every shell-provider can have different required options. Currently add the needed shell-provider to your list of needs, e.g.</p>
+<pre><code>  needs:
+    - local
+    - git
+    - drush
+</code></pre>
+</li>
+<li>
+<p>new global settings <code>disableScripts</code> which will not add the <code>script</code>-method to the needs.</p>
+</li>
+<li>there's a new command to list all blueprints: <code>list:blueprints</code></li>
+<li>new shell-provider <code>dockerExec</code> which will start a shell with the help of <code>docker exec</code> instead of ssh.</li>
+<li>
+<p>new config-option <code>shellProvider</code>, where you can override the shell-provider to your liking.</p>
+<p>hosts:
+    mbb:
+      shellProvider: docker-exec
+<em> You can get help for a specific task via <code>phab help &lt;task&gt;</code>. It will show all possible options and some help.
+</em> docker-compose version 23 changes the schema how names of docker-containers are constructed. To support this change we can now declare the needed service to compute the correct container-name from. </p>
+<p>hosts:
+    testHost:
+      docker:
+        service: web</p>
+</li>
+</ul>
+<p>The <code>name</code> will be discarded, if a <code>service</code>-entry is set.</p>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><code>docker:startRemoteAccess</code> is now the task <code>start-remote-access</code> as it makes more sense.</li>
+<li>the <code>list</code>-task needed to be renamed to <code>list:hosts</code>.</li>
+<li>the <code>--list</code> task (which was built into fabric) is now <code>list</code>.</li>
+<li>
+<p>the <code>offline</code>-task got removed, instead add the <code>-offline</code>-option and set it to 1, e.g.</p>
+<p>phab --offline=1 --config=mbb about</p>
+</li>
+<li>
+<p>the task <code>logLevel</code> is replaced by the builtin <code>-v</code>-option</p>
+</li>
+<li>
+<p>autocompletion works now differently than before, but now bash and zsh are supported. Please have a look into the documentation how to install it.</p>
+</li>
+<li>
+<p>for fish-shells</p>
+<pre><code>phab _completion --generate-hook --shell-type fish | source
+</code></pre>
+</li>
+<li>
+<p>for zsh/bash-shells</p>
+<pre><code>source &lt;(phab _completion --generate-hook)
+</code></pre>
+</li>
+<li>
+<p><code>listBackups</code> got renamed to <code>list:backups</code></p>
+</li>
+<li><code>backupDB</code> and <code>backupFiles</code> got removed, use <code>phab backup files</code> or <code>phab backup db</code>, the same mechanism works for restoring a backup.</li>
+<li><code>getFile</code> got renamed to <code>get:file</code></li>
+<li><code>putFile</code> got renamed to <code>put:file</code></li>
+<li><code>getBackup</code> got renamed to <code>get:backup</code></li>
+<li><code>getFilesDump</code> got renamed to <code>get:files-backup</code></li>
+<li><code>getProperty</code> got renamed to <code>get:property</code></li>
+<li><code>getSQLDump</code> got renamed to <code>get:sql-dump</code></li>
+<li><code>restoreSQLFromFile</code> got renamed to <code>restore:sql-from-file</code></li>
+<li><code>copyDBFrom</code> got renamed to <code>copy-from &lt;config&gt; db</code></li>
+<li><code>copyFilesFrom</code> got renamed to <code>copy-from &lt;config&gt; files</code></li>
+<li><code>installFrom</code> got renamed to <code>install:from</code></li>
+</ul>
+<h3 id="deprecated">Deprecated</h3>
+<ul>
+<li>script-function <code>fail_on_error</code> is deprecated, use <code>breakOnFirstError(&lt;bool&gt;)</code></li>
+<li><code>runLocally</code> is deprecated, add a new need <code>local</code> to the lists of needs.</li>
+<li><code>strictHostKeyChecking</code> is deprecated, use <code>disableKnownHosts</code> instead.</li>
+<li><code>getProperty</code> is deprecated and got renamed to <code>get-property</code></li>
+<li><code>ssh</code> is deprecated and got renamed to <code>shell</code> as some implementations might not use ssh.</li>
+<li><code>sshCommand</code> is deprecated and got renamed to <code>shell:command</code> and will return the command to run a shell with the given configuration</li>
+<li>the needs <code>drush7</code>, <code>drush8</code> and <code>drush9</code> are deprecated, use the need <code>drush</code> and the newly introduced options <code>drupalVersion</code> and <code>drushVersion</code> instead,</li>
+<li>the <code>slack</code>-configuration got removed and got replaced by a general notification solution, currently only with a mattermost implementation.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../contribute/" class="btn btn-neutral" title="Contributing to Phabalicious"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© 2018 Factorial GmbH, Hamburg</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/factorial-io/phabalicious/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../contribute/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/version-select.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
