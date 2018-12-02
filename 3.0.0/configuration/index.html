@@ -85,21 +85,6 @@
         </ul>
     
 
-    <li class="toctree-l2"><a href="#scripts_1">Scripts</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#replacement-patterns">Replacement-patterns</a></li>
-        
-            <li><a class="toctree-l3" href="#internal-commands">Internal commands</a></li>
-        
-            <li><a class="toctree-l3" href="#task-related-scripts">Task-related scripts</a></li>
-        
-            <li><a class="toctree-l3" href="#examples">Examples</a></li>
-        
-        </ul>
-    
-
     </ul>
 	    </li>
           
@@ -111,6 +96,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../local-overrides/">Local overrides</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scripts/">Scripts</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -489,79 +479,6 @@ inheritsFrom:
   - ./mbb.yaml
   - ./drupal.yaml
 </code></pre>
-
-<h1 id="scripts_1">Scripts</h1>
-<p>Scripts are a powerful concept of phabalicious. There are a lot of places where scripts can be called. The <code>common</code>-section defines common scripts to be run for specific task/installation-type-configurations, docker-tasks are also scripts which you can execute via the docker-command. And you can even script phabalicious tasks and create meta-tasks.</p>
-<p>A script is basically a list of commands which get executed via shell on a remote machine. To stay independent of the host where the script is executed, phabalicious parsed the script before executing it and replaces given variables with their counterpart in the yams file.</p>
-<h2 id="replacement-patterns">Replacement-patterns</h2>
-<p>Replacement-Patterns are specific strings enclosed in <code>%</code>s, e.g. <code>%host.port%</code>, <code>%dockerHost.rootFolder%</code> or <code>%arguments.name%</code>.</p>
-<p>Here's a simple example;</p>
-<pre><code class="yaml">script:
-  test:
-    - echo &quot;I am running on %host.config_name%&quot;
-</code></pre>
-
-<p>Calling this script via</p>
-<pre><code class="shell">phab config:mbb script:test
-</code></pre>
-
-<p>will show <code>I am running on mbb</code>.</p>
-<ul>
-<li>The host-configuration gets exposes via the <code>host.</code>-prefix, so <code>port</code> maps to <code>%host.port%</code>, etc.</li>
-<li>The dockerHost-configuration gets exposed via the <code>dockerHost</code>-prefix, so <code>rootFolder</code> maps to <code>%dockerHost.rootFolder%</code></li>
-<li>The global configuration of the yams-file gets exposed to the <code>settings</code>-prefix, so <code>uuid</code> gets mapped to `%settings.uuid%</li>
-<li>Optional arguments to the <code>script</code>-taks get the <code>argument</code>-prefix, e.g. <code>%arguments.name%</code>. You can get all arguments via <code>%arguments.combined%</code>.</li>
-<li>You can access hierarchical information via the dot-operator, e.g. <code>%host.database.name%</code></li>
-</ul>
-<p>If phabalicious detects a pattern it can't replace it will abort the execution of the script and displays a list of available replacement-patterns.</p>
-<h2 id="internal-commands">Internal commands</h2>
-<p>There are currently 3 internal commands. These commands control the flow inside phabalicious:</p>
-<ul>
-<li><code>fail_on_error(1|0)</code> If fail_on_error is set to one, phabalicious will exit if one of the script commands returns a non-zero return-code. When using <code>fail_on_error(0)</code> only a warning is displayed, the script will continue.</li>
-<li><code>execute(task, subtask, arguments)</code> execute a phabalicious task. For example you can run a deployment from a script via <code>execute(deploy)</code> or stop a docker-container from a script via <code>execute(docker, stop)</code></li>
-<li><code>fail_on_missing_directory(directory, message)</code> will print message <code>message</code> if the directory <code>directory</code> does not exist.</li>
-</ul>
-<h2 id="task-related-scripts">Task-related scripts</h2>
-<p>You can add scripts to the <code>common</code>-section, which will called for any host. You can differentiate by task-name and host-type, e.g. create a script which gets called for the task <code>deploy</code> and type <code>dev</code>.</p>
-<p>You can even run scripts before or after a task is executed. Append the task with <code>Prepare</code> or <code>Finished</code>.</p>
-<p>You can even run scripts for specific tasks and hosts. Just add your script with the task-name as its key.</p>
-<pre><code class="yaml">host:
-  test:
-    deployPrepare:
-      - echo &quot;Preparing deploy for test&quot;
-    deploy:
-      - echo &quot;Deploying on test&quot;
-    deployFinished:
-      - echo &quot;Deployment finished for test&quot;
-</code></pre>
-
-<p>These scripts in the above examples gets executed only for the host <code>test</code> and task <code>deploy</code>.</p>
-<h2 id="examples">Examples</h2>
-<p>A rather complex example scripting phabalicious.</p>
-<pre><code class="yaml">scripts:
-  runTests:
-    defaults:
-      branch: develop
-    script:
-      - execute(docker, start)
-      - execute(docker, waitForServices)
-      - execute(deploy, %arguments.branch%)
-      - execute(script, behatInstall)
-      - execute(script, behat, --profile=ci --format=junit --format=progress)
-      - execute(getFile, /var/www/_tools/behat/build/behat/default.xml, ./_tools/behat)
-      - execute(docker, stop)
-</code></pre>
-
-<p>This script will</p>
-<ul>
-<li>start the docker-container,</li>
-<li>wait for it,</li>
-<li>deploys the given branch,</li>
-<li>run a script which will install behat,</li>
-<li>run behat with some custom arguments,</li>
-<li>gets the result-file and copy it to a location,</li>
-<li>and finally stops the container.</li>
-</ul>
               
             </div>
           </div>
