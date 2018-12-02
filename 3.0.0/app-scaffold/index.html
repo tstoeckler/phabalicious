@@ -312,18 +312,20 @@ scaffold:
 </code></pre>
 
 <h4 id="the-fabfile-template">the fabfile-template</h4>
-<p>```yaml
-name: {{ name }}
+<pre><code class="yaml">name: {{ name }}
 key: {{ shortName }}
-deploymentModule: {{ shortName }}_deploy</p>
-<p>requires: 2.0.0</p>
-<p>needs:
+deploymentModule: {{ shortName }}_deploy
+
+requires: 2.0.0
+
+needs:
   - ssh
   - composer
   - docker
   - git
-  - files</p>
-<p>hosts:
+  - files
+
+hosts:
   mbb:
     host: {{ projectFolder }}.test
     user: root
@@ -338,7 +340,7 @@ deploymentModule: {{ shortName }}_deploy</p>
       user: root
       pass: admin
       host: mysql
-  ```</p>
+</code></pre>
               
             </div>
           </div>
