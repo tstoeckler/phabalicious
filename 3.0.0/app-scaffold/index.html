@@ -188,12 +188,36 @@ scaffold:
 <p>The fabfile needs at least the <code>scaffold</code>-section. The <code>scaffold</code>-section is a list of commands, executed by phabalicious one by one. It will use the pattern-replacement known for scripts.</p>
 <h2 id="the-scaffold-section">The <code>scaffold</code>-section</h2>
 <p>Phabalicious will provide the following replacement-patterns out of the box:</p>
-<p>||Pattern||Value||
-|%rootFolder%|The folder the app will be installed into|
-|%name%|The name of the app|
-|%projectFolder%|a cleaned version of the app-name, suitable for machine-names.|
-|%shortName%|The short-name|
-|%uuid|a random-uuid|</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%rootFolder%</td>
+<td>The folder the app will be installed into</td>
+</tr>
+<tr>
+<td>%name%</td>
+<td>The name of the app</td>
+</tr>
+<tr>
+<td>%projectFolder%</td>
+<td>a cleaned version of the app-name, suitable for machine-names.</td>
+</tr>
+<tr>
+<td>%shortName%</td>
+<td>The short-name</td>
+</tr>
+<tr>
+<td>%uuid%</td>
+<td>a random-uuid</td>
+</tr>
+</tbody>
+</table>
 <h2 id="the-variables-section">the <code>variables</code>-section</h2>
 <p>You can add own variables via the <code>variables</code>-section. In the above example, the variable <code>composerProject</code> will be available in the <code>scaffold</code>-section via the pattern <code>%composerProject%</code></p>
 <h2 id="the-assets-section">the <code>assets</code>-section</h2>
@@ -299,51 +323,18 @@ deploymentModule: {{ shortName }}_deploy</p>
   - docker
   - git
   - files</p>
-<p>excludeFiles:
-  backup:
-    - "styles"
-    - "tmp"
-  copyFrom:
-    - "tmp"
-    - "styles"
-    - "php"
-    - "js"
-    - "css"</p>
-<p>scripts:</p>
-<p>dockerHosts:
-  mbb:
-    environment:
-      COMPOSE_FILE: 'docker-compose.yml:docker-compose-mbb.yml'
-    inheritsFrom:
-      - https://config.factorial.io/mbb/2.0/mbb-docker.yaml
-      - https://config.factorial.io/docker/2.0/docker-compose.yaml</p>
-<p>clients.factorial.io:
-    environment:
-      COMPOSE_HTTP_TIMEOUT: "180"
-      VHOST: "%host.docker.vhost%"
-    inheritsFrom:
-      - https://config.factorial.io/clients.factorial.io/2.0/d8/docker.yaml</p>
 <p>hosts:
   mbb:
     host: {{ projectFolder }}.test
     user: root
-    password: root
     port: {{ 1024 + random(20000) }}
     type: dev
     rootFolder: /var/www/{{ webRoot }}
     gitRootFolder: /var/www
-    siteFolder: /sites/default
-    filesFolder: /sites/default/files
     backupFolder: /var/www/backups
     branch: develop
-    supportsInstalls: true
-    docker:
-      name: {{ projectFolder }}<em>web_1
-      service: web
-      configuration: mbb
-      projectFolder: {{ projectFolder }}
     database:
-      name: {{ projectFolder|replace({'-': '</em>'}) }}_db
+      name: {{ projectFolder|replace({'-': '_'}) }}_db
       user: root
       pass: admin
       host: mysql
