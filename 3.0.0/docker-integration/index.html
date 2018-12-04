@@ -93,6 +93,8 @@
         
             <li><a class="toctree-l3" href="#predefined-docker-tasks">Predefined docker-tasks</a></li>
         
+            <li><a class="toctree-l3" href="#conclusion">Conclusion</a></li>
+        
         </ul>
     
 
@@ -258,6 +260,8 @@ docker run
 <li><code>deleteContainer</code>: remove and delete all app container</li>
 </ul>
 <p>If you want to support this in your configuration, add the tasks to the fabfile and its corresponding commands. </p>
+<h2 id="conclusion">Conclusion</h2>
+<p>As you can see, there's not much docker-specific besides the naming. So in theory you can control something else like <code>rancher</code> or maybe even <code>kubectl</code>. All you have is the referencing between a host and a dockerHost and the possibility to run tasks locally or via SSH on a remote instance, and pass data from the host-config or docker-config to your scripts.</p>
               
             </div>
           </div>
