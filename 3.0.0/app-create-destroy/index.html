@@ -8,7 +8,7 @@
   
   <meta name="author" content="Factorial GmbH, Hamburg">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Running phabalicious - Phabalicious</title>
+  <title>Creating/ destroying an app from existing configuration - Phabalicious</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Running phabalicious";
-    var mkdocs_page_input_path = "usage.md";
+    var mkdocs_page_name = "Creating/ destroying an app from existing configuration";
+    var mkdocs_page_input_path = "app-create-destroy.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,26 +59,9 @@
     <a class="" href="../installation/">Installation of needed dependencies</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Running phabalicious</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#running-phabalicious">Running phabalicious</a></li>
-    
-
-    <li class="toctree-l2"><a href="#tasks">Tasks</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#some-background">Some Background</a></li>
-        
-            <li><a class="toctree-l3" href="#list-of-available-tasks">List of available tasks</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../usage/">Running phabalicious</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -111,9 +94,27 @@
     <a class="" href="../app-scaffold/">Scaffolding a new app</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../app-create-destroy/">Creating/ destroying an app from existing configuration</a>
+    <a class="current" href="./">Creating/ destroying an app from existing configuration</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#creating-destroying-an-app-from-existing-configuration">Creating/ destroying an app from existing configuration</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#the-standard-stages">the standard stages</a></li>
+        
+            <li><a class="toctree-l3" href="#creating-a-new-app">Creating a new app</a></li>
+        
+            <li><a class="toctree-l3" href="#destroying-an-app">Destroying an app</a></li>
+        
+            <li><a class="toctree-l3" href="#blueprints">Blueprints</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -148,10 +149,10 @@
     
       
     
-    <li>Running phabalicious</li>
+    <li>Creating/ destroying an app from existing configuration</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/factorial-io/phabalicious/edit/develop/docs/docs/usage.md"
+        <a href="https://github.com/factorial-io/phabalicious/edit/develop/docs/docs/app-create-destroy.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -161,41 +162,47 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="running-phabalicious">Running phabalicious</h1>
-<p>To execute a task with the help of phabalicious, just</p>
-<pre><code class="shell">cd &lt;your-project-folder&gt;
-phab --config=&lt;your-config-key&gt; &lt;task&gt;
-</code></pre>
-
-<p>This will read your fabfile.yaml, look for <code>&lt;your-config-key&gt;</code> in the host-section and run the task <task></p>
-<h1 id="tasks">Tasks</h1>
-<h2 id="some-background">Some Background</h2>
-<p>Phabalicious provides a set of so-called methods which implement all listed functionality. The following methods are available:</p>
+                <h1 id="creating-destroying-an-app-from-existing-configuration">Creating/ destroying an app from existing configuration</h1>
+<p>Phabalicious can create or delete a complete app with two commands:</p>
 <ul>
-<li>local</li>
-<li>git</li>
-<li>ssh</li>
-<li>drush</li>
-<li>composer</li>
-<li>files</li>
-<li>docker</li>
-<li>drupalconsole</li>
-<li>mattermost</li>
-<li>platform</li>
+<li><code>phab --config=&lt;config&gt; app:create --copy-from=&lt;other-config&gt;</code></li>
+<li><code>phab --config=&lt;config&gt; app:destroy</code></li>
 </ul>
-<p>You declare your needs in the fabfile.yaml with the key <code>needs</code>, e.g.</p>
-<pre><code class="yaml">needs:
-  - git
-  - ssh
-  - drush
-  - files
+<p>Both commands executes a list of stages, which can be influenced via configuration</p>
+<h2 id="the-standard-stages">the standard stages</h2>
+<p>These are the standard stages. You can override them by adding them to the global section of your fabfile:</p>
+<pre><code class="yaml">appStages:
+  create:
+    - stage: installCode
+    - stage: spinUp
+    - stage: installDependencies
+    - stage: install
+  deploy:
+    - stage: spinUp
+  destroy:
+    - stage: spinDown
+    - stage: deleteContainers
 </code></pre>
 
-<p>Have a look at the file-format documentation for more info.</p>
-<h2 id="list-of-available-tasks">List of available tasks</h2>
-<p>You can get a list of available commands with</p>
-<pre><code class="shell">phab list
+<h2 id="creating-a-new-app">Creating a new app</h2>
+<p>Run the phab-command as usual. If you want to copy from an existing installation, add the <code>--copy-from</code>-option.</p>
+<pre><code class="shell">phab --config=&lt;your-config&gt; app:create
 </code></pre>
+
+<p>If the app is already created (there's an existing <code>.projectCreated</code>-file in the root of the installation), only the <code>deploy</code>-stage will be executed, and afterwards the deploy-task will be executed.</p>
+<p>If the app is not created yet, all <code>create</code>-stages will be executed. If nothing went wrong you should have a running installation of the given configuration</p>
+<h2 id="destroying-an-app">Destroying an app</h2>
+<pre><code class="shell">phab --config=&lt;your-config&gt; app:destroy
+</code></pre>
+
+<p>This will execute all <code>destroy</code>-stages and delete the project-folder afterwards.</p>
+<h2 id="blueprints">Blueprints</h2>
+<p>Both commands work best when using blueprints. This will allow to create a config and an app from a single string like a name of a feature.</p>
+<p>Some examples:</p>
+<pre><code class="shell">phab --config=some-config --blueprint=feature/&lt;some-feature&gt; create:app
+</code></pre>
+
+<p>Will create a new app from a blueprinted config.</p>
               
             </div>
           </div>
@@ -203,10 +210,10 @@ phab --config=&lt;your-config-key&gt; &lt;task&gt;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../available-tasks/" class="btn btn-neutral float-right" title="Available tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../contribute/" class="btn btn-neutral float-right" title="Contributing to Phabalicious">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../installation/" class="btn btn-neutral" title="Installation of needed dependencies"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../app-scaffold/" class="btn btn-neutral" title="Scaffolding a new app"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -236,10 +243,10 @@ phab --config=&lt;your-config-key&gt; &lt;task&gt;
           <a href="https://github.com/factorial-io/phabalicious/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../app-scaffold/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../available-tasks/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../contribute/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

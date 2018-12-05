@@ -81,22 +81,6 @@
             
     <li class="toctree-l2"><a href="#docker-integration">Docker integration</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l3" href="#a-docker-configuration">A docker-configuration</a></li>
-        
-            <li><a class="toctree-l3" href="#the-docker-specific-host-configuration">the docker-specific host-configuration</a></li>
-        
-            <li><a class="toctree-l3" href="#a-simple-example">A simple example:</a></li>
-        
-            <li><a class="toctree-l3" href="#built-in-docker-commands">Built-in docker commands</a></li>
-        
-            <li><a class="toctree-l3" href="#predefined-docker-tasks">Predefined docker-tasks</a></li>
-        
-            <li><a class="toctree-l3" href="#conclusion">Conclusion</a></li>
-        
-        </ul>
-    
 
     </ul>
 	    </li>
@@ -114,6 +98,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../app-scaffold/">Scaffolding a new app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../app-create-destroy/">Creating/ destroying an app from existing configuration</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -162,106 +151,7 @@
             <div class="section">
               
                 <h1 id="docker-integration">Docker integration</h1>
-<p>The docker-integration is quite simple, but very powerful. In a fabfile, there are host-configuration under the key <code>hosts</code> and docker-configs under the key <code>dockerHosts</code>. A <code>host</code> can reference a docker-configuration, multiple hosts can use one docker-config.</p>
-<h2 id="a-docker-configuration">A docker-configuration</h2>
-<p>A docker configuration must contain these keys:</p>
-<ul>
-<li><code>rootFolder</code> the rootFolder, where the projectFolder can be found</li>
-<li><code>shellProvider</code>: <code>local</code> or <code>ssh</code>; in which shell the tasks-commands should be run. The shell-provider might require more information e.g. <code>user</code>, <code>host</code> and <code>port</code>.</li>
-<li><code>tasks</code>: a keyed list of scripts to use. The key is the name of the script, which you can trigger via the <code>docker command</code></li>
-<li><code>environment</code>: a key-value list of environment-variables to set before running a docker-command. This helps to modularize docker-compose-files, for example.</li>
-</ul>
-<p>The tasks can use the pattern-replacement used in other parts of phabalicious to get data from the docker-config or from the host-config into the tasks. Here's a small example:</p>
-<pre><code class="yaml">tasks:
-  run: 
-    - echo &quot;running container %host.docker.name% for config %host.configName% in %dockerHost.rootFolder%
-</code></pre>
-
-<p>If you want to use some host-config, use <code>host.</code> as a prefix, if you want to use sth from the docker-config, use <code>dockerHost.</code> as prefix.</p>
-<h2 id="the-docker-specific-host-configuration">the docker-specific host-configuration</h2>
-<p>All docker-configuration is stored inside the <code>docker</code>-group. It has only 2 required keys:</p>
-<ul>
-<li><code>configuration</code> this links to a key under <code>dockerHosts</code></li>
-<li><code>projectFolder</code> the folder, where this project is stored in relation to the <code>rootFolder</code></li>
-<li><code>name</code> or <code>service</code>. Some commands need to know with which container you want to interact. Provide the name of the docker-container via the <code>name</code>-property, if you are using docker-compose you can set the <code>service</code> accordingly, then phabalicious will try to compute the docker-name automatically.</li>
-</ul>
-<p>You can add as many data to the yams file and reference it via the replacement-mechanism described earlier.</p>
-<h2 id="a-simple-example">A simple example:</h2>
-<pre><code class="yaml">dockerHosts:
-  test:
-    rootFolder: /root/folder
-    shellProvider: local
-    environment:
-      VHOST: %host.configName%.test
-    tasks:
-      run:
-        - echo &quot;docker run&quot;
-      build:
-        - echo &quot;docker build&quot;
-      all:
-        - echo &quot;current config: %host.configName%&quot;
-        - execute(docker, build)
-        - execute(docker, run)
-
-hosts:
-  testHostA:
-    ...
-    docker:
-      configuration: test
-      projectFolder: test-host-a
-      name: testhosta
-</code></pre>
-
-<p>This snippet will expose 3 docker-commands for the host <code>testHostA</code>, you can execute them via</p>
-<pre><code class="shell">phab --config=testHostA docker run|build|all
-</code></pre>
-
-<p>The output for <code>phab -ctestHostA docker all</code> will be:</p>
-<pre><code>current config: testHostA
-docker build
-docker run
-</code></pre>
-
-<p>The inheritance mechanism allows you to store the docker-config in a central location and reuse it in your fabfile:</p>
-<pre><code class="yaml">dockerHosts:
-  testB:
-    rootFolder: /some/other/folder
-    inheritsFrom: 
-      - https://some.host/docker.yml
-      - https://some.host/docker-compose.yml
-</code></pre>
-
-<h2 id="built-in-docker-commands">Built-in docker commands</h2>
-<p>There are two commands builtin, because they are hard to implement in a script-only version:</p>
-<ul>
-<li>waitForServices</li>
-<li>copySSHKeysToDocker</li>
-</ul>
-<h3 id="waitforservices">waitForServices</h3>
-<p>This will try to run <code>supervisorctl status</code> every 10 seconds, and wait until all services are up and running. If you want to disable this command, set the executable to false with</p>
-<pre><code class="yaml">executables:
-  supervisorctl: false
-</code></pre>
-
-<h3 id="copysshkeystodocker">copySSHKeysToDocker</h3>
-<p>This command will copy the referenced files from your local computer into the docker container and set the permissions so ssh can use the copied data. </p>
-<p>These are the needed global settings in the fabfile:</p>
-<ul>
-<li><code>dockerKeyFile</code> will copy the referenced private key and its public key into the container</li>
-<li><code>dockerAuthorizedKeyFile</code>, the <code>authorized_keys</code>-file, can be a path to a file or an url</li>
-<li><code>dockerKnownHostsFile</code>, the <code>known_hosts</code>-file</li>
-</ul>
-<p>Obviously a ssh-demon should be running inside your docker-container.</p>
-<h2 id="predefined-docker-tasks">Predefined docker-tasks</h2>
-<p>Phabalicious is running some predefined docker-tasks if set in the fabfile and when using the commands <code>app:create</code> or <code>app:destroy</code></p>
-<ul>
-<li><code>spinUp</code>: get all needed container running</li>
-<li><code>spinDown</code>: stop all app-containers</li>
-<li><code>deleteContainer</code>: remove and delete all app container</li>
-</ul>
-<p>If you want to support this in your configuration, add the tasks to the fabfile and its corresponding commands. </p>
-<h2 id="conclusion">Conclusion</h2>
-<p>As you can see, there's not much docker-specific besides the naming. So in theory you can control something else like <code>rancher</code> or maybe even <code>kubectl</code>. All you have is the referencing between a host and a dockerHost and the possibility to run tasks locally or via SSH on a remote instance, and pass data from the host-config or docker-config to your scripts.</p>
+<p>TODO</p>
               
             </div>
           </div>
