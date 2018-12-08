@@ -119,6 +119,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../passwords/">Passwords</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../contribute/">Contributing to Phabalicious</a>
 	    </li>
           
@@ -177,6 +182,9 @@
     - stage: spinUp
     - stage: installDependencies
     - stage: install
+  createCode:
+    - stage: installCode
+    - stage: installDependencies
   deploy:
     - stage: spinUp
   destroy:
@@ -184,6 +192,7 @@
     - stage: deleteContainers
 </code></pre>
 
+<p><code>createCode</code> is only used by the <code>ftp-sync</code>-method, to create a complete code version of an app.</p>
 <h2 id="creating-a-new-app">Creating a new app</h2>
 <p>Run the phab-command as usual. If you want to copy from an existing installation, add the <code>--copy-from</code>-option.</p>
 <pre><code class="shell">phab --config=&lt;your-config&gt; app:create
@@ -210,7 +219,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../contribute/" class="btn btn-neutral float-right" title="Contributing to Phabalicious">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../passwords/" class="btn btn-neutral float-right" title="Passwords">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../app-scaffold/" class="btn btn-neutral" title="Scaffolding a new app"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -246,7 +255,7 @@
         <span><a href="../app-scaffold/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../contribute/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../passwords/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

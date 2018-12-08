@@ -191,6 +191,9 @@
     <li class="toctree-l2"><a href="#appdestroy">app:destroy</a></li>
     
 
+    <li class="toctree-l2"><a href="#self-update">self-update</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -222,6 +225,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../app-create-destroy/">Creating/ destroying an app from existing configuration</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../passwords/">Passwords</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -435,6 +443,7 @@ phab --config=&lt;your-config&gt; deploy &lt;branch-to-deploy&gt;
 <ul>
 <li><code>git</code> will deploy to the latest commit for the given branch defined in the host-configuration. Submodules will be synced, and updated.</li>
 <li><code>platform</code> will push the current branch to the <code>platform</code> remote, which will start the deployment-process on platform.sh</li>
+<li><code>ftp-sync</code> will create a copy of the app in a temporary folder and syncs this folder with the help of <code>lftp</code> with a remote-ftp-server.</li>
 </ul>
 <p><strong>Examples:</strong></p>
 <ul>
@@ -691,11 +700,12 @@ phab --config=&lt;config&gt; start-remote-access --port=&lt;port&gt; --public-po
 </em> <code>phab app:scaffold path/to/scaffold.yml --name="Hello World" --short-name="HW"</code> will scaffold the app with name "Hello World and short-name "HW"
 * <code>phab app:scaffold https://config.factorial.io/scaffold/drupal/d8.yml</code> will scaffold a Drupal app from the remote configuration.</p>
 <h2 id="appcreate">app:create</h2>
-<pre><code class="shell">phab --config=&lt;config&gt; app:create
+<pre><code class="shell">phab --config=&lt;config&gt; app:create --config-from=&lt;other-config&gt;
 </code></pre>
 
 <p>This command will create a new app instance from a given config. Most useful with the usage of blueprints. </p>
-<p>The creation is done in several steps which can be customized. For a deeper explanation please have a look into the dedicated documentation</p>
+<p>The creation is done in several steps which can be customized. If you apply the <code>--config-from</code>-option an additional copyFrom is done afterwards. </p>
+<p>For a deeper explanation please have a look into the dedicated documentation</p>
 <h2 id="appupdate">app:update</h2>
 <pre><code class="shell">phab --config=&lt;config&gt; app:update
 </code></pre>
@@ -711,6 +721,12 @@ phab --config=&lt;config&gt; start-remote-access --port=&lt;port&gt; --public-po
 </code></pre>
 
 <p>This command will destroy an app from a given configuration. The process has several steps. Caution: there will be no backup!</p>
+<h2 id="self-update">self-update</h2>
+<pre><code class="shell">phab self-update
+Phan self-update --allow-unstable=1
+</code></pre>
+
+<p>This will download the latest version of phab and replace the current installed one with the downloaded version. If <code>allow-unstable</code> is set, the latest-dev-version will be downloaded.</p>
               
             </div>
           </div>

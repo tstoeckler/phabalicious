@@ -115,6 +115,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../passwords/">Passwords</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../contribute/">Contributing to Phabalicious</a>
 	    </li>
           
@@ -188,10 +193,12 @@ hosts:
 <li><code>ssh</code></li>
 <li><code>drush</code> for support of drupal installations</li>
 <li><code>files</code></li>
-<li><code>Mattermost</code> for slack-notifications</li>
+<li><code>mattermost</code> for slack-notifications</li>
 <li><code>docker</code> for docker-support</li>
 <li><code>composer</code> for composer support</li>
 <li><code>drupalconsole</code> for drupal-concole support</li>
+<li><code>platform</code> for deploying to platform.sh</li>
+<li><code>ftp-sync</code> to deploy to a ftp-server</li>
 </ul>
 <p><strong>Example for drupal 7</strong></p>
 <pre><code class="yaml">needs:
@@ -303,7 +310,7 @@ The main use-case is to run different scripts per type, see the <code>common</co
 <ul>
 <li><code>composerRootFolder</code> the folder where the composer.json for the project is stored, defaults to <code>gitRootFolder</code>.</li>
 </ul>
-<h4 id="configuration-for-the-crush-method">Configuration for the crush-method</h4>
+<h4 id="configuration-for-the-drush-method">Configuration for the drush-method</h4>
 <ul>
 <li><code>siteFolder</code> is a drupal-specific folder, where the settings.php resides for the given installation. This allows to interact with multisites etc.</li>
 <li><code>filesFolder</code> the path to the files-folder, where user-assets get stored and which should be backed up by the <code>files</code>-method</li>
@@ -323,6 +330,16 @@ The main use-case is to run different scripts per type, see the <code>common</co
 <li><code>drupalVersion</code> set the drupal-version to use. If not set phabalicious is trying to guess it from the <code>needs</code>-configuration.</li>
 <li><code>drushVersion</code> set the used crush-version, default is <code>8</code>. Drush is not 100% backwards-compatible, for phabalicious needs to know its version.</li>
 <li><code>supportsZippedBackups</code> default is true, set to false, when zipped backups are not supported</li>
+</ul>
+<h4 id="configuration-of-the-ftp-sync-method">Configuration of the ftp-sync-method</h4>
+<ul>
+<li><code>ftp</code> keeps all configuration bundled:</li>
+<li><code>user</code> the ftp-user  </li>
+<li><code>password</code> the ftp password</li>
+<li><code>host</code> the ftp host</li>
+<li><code>port</code>, default is 21, the port to connect to </li>
+<li><code>rootFolder</code> the folder to copy the app into on the ftp-host.</li>
+<li><code>lftpOptions</code>, an array of options to pass when executing <code>lftp</code></li>
 </ul>
 <h4 id="configuration-of-the-docker-method">Configuration of the docker-method</h4>
 <ul>

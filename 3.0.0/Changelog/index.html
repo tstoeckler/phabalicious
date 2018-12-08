@@ -101,6 +101,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../passwords/">Passwords</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../contribute/">Contributing to Phabalicious</a>
 	    </li>
           
@@ -113,7 +118,11 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#300">3.0.0</a></li>
+            <li><a class="toctree-l3" href="#300-alpha5-2018-12-08">3.0.0-alpha.5 / 2018-12-08</a></li>
+        
+            <li><a class="toctree-l3" href="#300-alpha4-2018-12-08">3.0.0-alpha.4 / 2018-12-08</a></li>
+        
+            <li><a class="toctree-l3" href="#300-develop">3.0.0 develop</a></li>
         
         </ul>
     
@@ -157,7 +166,31 @@
             <div class="section">
               
                 <h1 id="changelog">Changelog</h1>
-<h2 id="300">3.0.0</h2>
+<h2 id="300-alpha5-2018-12-08">3.0.0-alpha.5 / 2018-12-08</h2>
+<h3 id="fixed">fixed</h3>
+<ul>
+<li>Use real version number</li>
+<li>Fix phar-build</li>
+</ul>
+<h2 id="300-alpha4-2018-12-08">3.0.0-alpha.4 / 2018-12-08</h2>
+<h3 id="new">new</h3>
+<ul>
+<li>New command <code>self-update</code>, will download and install the latest available version</li>
+<li>New method <code>ftp-sync</code> to deploy code-bases to a remote ftp-instance</li>
+<li>Introduction of a password-manager for retrieving passwords from the user or a special file</li>
+</ul>
+<h3 id="changed">changed</h3>
+<ul>
+<li>Switch to box for building phars</li>
+</ul>
+<h3 id="fixed_1">fixed</h3>
+<ul>
+<li>Do not run empty script lines (Fixes #8)</li>
+<li>Set folder for script-phase</li>
+<li>Set rootFolder fot task-specific scripts</li>
+<li>Support legacy host-types</li>
+</ul>
+<h2 id="300-develop">3.0.0 develop</h2>
 <p>Fabalicious is now rewritten in PHP, so we changed the name to make the separation more clear. Phabalicious is now a symfony console app and uses a more unix-style approach to arguments and options. E.g. instead of <code>config:&lt;name-of-config&gt;</code> use <code>--config=&lt;name-of-config&gt;</code></p>
 <h3 id="why-the-rewrite">Why the rewrite</h3>
 <p>Python on Mac OS X is hard, multiple versions, multiple locations etc. Every machine needed some magic hands to get fabalicious working on it. Fabalicious itself is written in python 2.x, but the world is moving on to python 3. Fabric, the underlying lib we used for fabalicious is also moving forward to version 2 which is not backwards compatible yet with fabric 1. On the other side we are now maintaining more and more containerized setups where you do not need ssh to run commands in. A popular example is docker and its whole universe. Fabric couldn't help us here, and fabric is moving into a different direction.</p>
@@ -220,19 +253,48 @@
 <li>new shell-provider <code>dockerExec</code> which will start a shell with the help of <code>docker exec</code> instead of ssh.</li>
 <li>
 <p>new config-option <code>shellProvider</code>, where you can override the shell-provider to your liking.</p>
+<pre><code>hosts:
+  mbb:
+    shellProvider: docker-exec
+</code></pre>
+<ul>
+<li>You can get help for a specific task via <code>phab help &lt;task&gt;</code>. It will show all possible options and some help.</li>
+<li>
+<p>docker-compose version 23 changes the schema how names of docker-containers are constructed. To support this change we can now declare the needed service to compute the correct container-name from.</p>
 <p>hosts:
-    mbb:
-      shellProvider: docker-exec
-<em> You can get help for a specific task via <code>phab help &lt;task&gt;</code>. It will show all possible options and some help.
-</em> docker-compose version 23 changes the schema how names of docker-containers are constructed. To support this change we can now declare the needed service to compute the correct container-name from. </p>
-<p>hosts:
-    testHost:
-      docker:
-        service: web</p>
+  testHost:
+    docker:
+      service: web
+   The <code>name</code> will be discarded, if a <code>service</code>-entry is set.</p>
 </li>
 </ul>
-<p>The <code>name</code> will be discarded, if a <code>service</code>-entry is set.</p>
-<h3 id="changed">Changed</h3>
+</li>
+<li>
+<p>new method <code>ftp-sync</code>, it's a bit special. This method creates the app into a temporary folder, and syncs it via <code>lftp</code> to a remote instance. Here's a complete example (most of them are provided via sensible defaults):</p>
+<pre><code>excludeFiles:
+  ftp-sync:
+    - .git/
+    - node_modules
+hosts:
+  ftpSyncSample:
+    needs:
+      - git
+      - ftp-sync
+      - local
+    ftp:
+      user: &lt;ftp-user&gt;
+      password: &lt;ftp-password&gt; #
+      host: &lt;ftp-host&gt;
+      port: 21
+      lftpOptions:
+        - --ignoreTime
+        - --verbose=3
+        - --no-perms
+</code></pre>
+<p>You can add your password to the file <code>.phabalicious-credentials</code> (see passwords.md) so phabalicious pick it up.</p>
+</li>
+</ul>
+<h3 id="changed_1">Changed</h3>
 <ul>
 <li><code>docker:startRemoteAccess</code> is now the task <code>start-remote-access</code> as it makes more sense.</li>
 <li>the <code>list</code>-task needed to be renamed to <code>list:hosts</code>.</li>
