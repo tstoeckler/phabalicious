@@ -118,6 +118,12 @@
     
         <ul>
         
+            <li><a class="toctree-l3" href="#fixed">fixed</a></li>
+        
+            <li><a class="toctree-l3" href="#300-alpha8-2018-12-20">3.0.0-alpha.8 / 2018-12-20</a></li>
+        
+            <li><a class="toctree-l3" href="#300-alpha7-2018-12-14">3.0.0-alpha.7 / 2018-12-14</a></li>
+        
             <li><a class="toctree-l3" href="#300-alpha6-2018-12-11">3.0.0-alpha.6 / 2018-12-11</a></li>
         
             <li><a class="toctree-l3" href="#300-alpha5-2018-12-08">3.0.0-alpha.5 / 2018-12-08</a></li>
@@ -168,8 +174,39 @@
             <div class="section">
               
                 <h1 id="changelog">Changelog</h1>
-<h2 id="300-alpha6-2018-12-11">3.0.0-alpha.6 / 2018-12-11</h2>
 <h3 id="fixed">fixed</h3>
+<ul>
+<li>Fix logic error in InstallCommand, add testcases (Fixes #21)</li>
+<li>Wrap interactive shell with bash only if we have a command to execute</li>
+<li>Try up to 5 parent folders to find suitable fabfiles (Fixes #18)</li>
+<li>Use paralell uploads for ftp-deployments</li>
+<li>Use a login-shell when running drush or drupalconsole interactively. (Fixes #20)</li>
+<li>Add autocompletion for <code>install-from</code></li>
+</ul>
+<h2 id="300-alpha8-2018-12-20">3.0.0-alpha.8 / 2018-12-20</h2>
+<h3 id="fixed_1">fixed</h3>
+<ul>
+<li>Call overridden methods only one time, add missin reset-implementation to platform-method (fixes #14)</li>
+<li>Increase verbosity of app:scaffold</li>
+<li>Add missing twig-dependency to phar-creation (fixes #17)</li>
+<li>Fix handling of relative paths in app:scaffold (Fixes #16)</li>
+<li>Fix parsing of multiple IPs from a docker-container (Fixes #15)</li>
+<li>Pass available arguments to autocompletion for command copy-from (Fixes #13)</li>
+<li>Run drupalconsole in an interactive shell</li>
+</ul>
+<h2 id="300-alpha7-2018-12-14">3.0.0-alpha.7 / 2018-12-14</h2>
+<h3 id="fixed_2">fixed</h3>
+<ul>
+<li>Handle app-options correctly when doing shell-autocompletion (Fixes #12)</li>
+<li>Silent warnings when doing autocompletion (fixes #11)</li>
+<li>Better command output for start-remote-access (fixes #10)</li>
+<li>Throw exception if docker task fails</li>
+<li>Fix command output parsing</li>
+<li>Source /etc/profile and .bashrc</li>
+<li>Better defaults for lftp</li>
+</ul>
+<h2 id="300-alpha6-2018-12-11">3.0.0-alpha.6 / 2018-12-11</h2>
+<h3 id="fixed_3">fixed</h3>
 <ul>
 <li>Some bugfixes for ftp-deployments</li>
 <li>Nicer output</li>
@@ -178,7 +215,7 @@
 <li>Set version number, when not bundling as phar</li>
 </ul>
 <h2 id="300-alpha5-2018-12-08">3.0.0-alpha.5 / 2018-12-08</h2>
-<h3 id="fixed_1">fixed</h3>
+<h3 id="fixed_4">fixed</h3>
 <ul>
 <li>Use real version number</li>
 <li>Fix phar-build</li>
@@ -194,7 +231,7 @@
 <ul>
 <li>Switch to box for building phars</li>
 </ul>
-<h3 id="fixed_2">fixed</h3>
+<h3 id="fixed_5">fixed</h3>
 <ul>
 <li>Do not run empty script lines (Fixes #8)</li>
 <li>Set folder for script-phase</li>
