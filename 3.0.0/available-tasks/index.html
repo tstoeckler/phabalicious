@@ -194,6 +194,9 @@
     <li class="toctree-l2"><a href="#self-update">self-update</a></li>
     
 
+    <li class="toctree-l2"><a href="#jira">jira</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -412,7 +415,7 @@
 <pre><code class="shell">Phab config=&lt;your-config&gt; --blueprint=&lt;your-blueprint-config&gt; output
 </code></pre>
 
-<p>This command will print the computed configuration from a blueprint as yams. You can copy it and paste it back to the fabfile to make it permanent. </p>
+<p>This command will print the computed configuration from a blueprint as yams. You can copy it and paste it back to the fabfile to make it permanent.</p>
 <h2 id="getproperty">get:property</h2>
 <pre><code class="shell">phab --config=&lt;your-config&gt; get:property &lt;name-of-property&gt;
 </code></pre>
@@ -574,7 +577,7 @@ phab --config=&lt;your-config&gt; deploy &lt;branch-to-deploy&gt;
 <pre><code class="shell">phab --config=&lt;config&gt; drush &quot;&lt;drush-command&gt;&quot;
 </code></pre>
 
-<p>This task will execute the <code>drush-command</code> on the remote host specified in <config>. Please note, that you'll have to quote the drush-command when it contains spaces. </p>
+<p>This task will execute the <code>drush-command</code> on the remote host specified in <config>. Please note, that you'll have to quote the drush-command when it contains spaces.</p>
 <p><strong>Available methods</strong></p>
 <ul>
 <li>Only available for the <code>drush</code>-method</li>
@@ -681,7 +684,7 @@ phab --config=&lt;config&gt; start-remote-access --port=&lt;port&gt; --public-po
 <p><strong>Examples</strong></p>
 <ul>
 <li><code>phab --config=mbb start-remote-access</code> will forward <code>localhost:8888</code> to port <code>80</code> of the docker-container</li>
-<li><code>phab --config=mbb start-remote-access --port=3306 --publicPort=33060</code> will forward <code>localhost:33060</code>to port <code>3306</code> </li>
+<li><code>phab --config=mbb start-remote-access --port=3306 --publicPort=33060</code> will forward <code>localhost:33060</code>to port <code>3306</code></li>
 </ul>
 <h2 id="notify">notify</h2>
 <pre><code class="shell">phab --config=&lt;config&gt; notify &lt;message&gt; &lt;channel&gt;
@@ -703,8 +706,8 @@ phab --config=&lt;config&gt; start-remote-access --port=&lt;port&gt; --public-po
 <pre><code class="shell">phab --config=&lt;config&gt; app:create --config-from=&lt;other-config&gt;
 </code></pre>
 
-<p>This command will create a new app instance from a given config. Most useful with the usage of blueprints. </p>
-<p>The creation is done in several steps which can be customized. If you apply the <code>--config-from</code>-option an additional copyFrom is done afterwards. </p>
+<p>This command will create a new app instance from a given config. Most useful with the usage of blueprints.</p>
+<p>The creation is done in several steps which can be customized. If you apply the <code>--config-from</code>-option an additional copyFrom is done afterwards.</p>
 <p>For a deeper explanation please have a look into the dedicated documentation</p>
 <h2 id="appupdate">app:update</h2>
 <pre><code class="shell">phab --config=&lt;config&gt; app:update
@@ -727,6 +730,11 @@ Phan self-update --allow-unstable=1
 </code></pre>
 
 <p>This will download the latest version of phab and replace the current installed one with the downloaded version. If <code>allow-unstable</code> is set, the latest-dev-version will be downloaded.</p>
+<h2 id="jira">jira</h2>
+<pre><code class="shell">phab jira
+</code></pre>
+
+<p>This command will display your open tasks for that given project. For this to work, the command needs some configuration-options.</p>
               
             </div>
           </div>

@@ -433,6 +433,19 @@ The main use-case is to run different scripts per type, see the <code>common</co
 
 <p>Running the script via <code>phab config:mbb script:defaultArgumentTest,name="Julia"</code> will show <code>Hello Julia</code>. Running <code>phab config:mbb script:defaultArgumentTest</code> will show <code>Hello Bob</code>.</p>
 <p>For more information see the main scripts section below.</p>
+<h3 id="jira">jira</h3>
+<p>The jira-command needs some configuration. It is advised to store this configuration in your user folder (<code>~/.fabfile.local.yaml</code>) or somewhere upstream of your project folder, as it might contain sensitive information.</p>
+<pre><code>jira:
+  host: &lt;jira-host&gt;
+  user: &lt;jira-user&gt;
+  pass: &lt;jira-password&gt;
+</code></pre>
+
+<p>The command will use the global <code>key</code> as project-key, you can override that via the following configuration:</p>
+<pre><code>jira:
+  projectKey: &lt;jira project-key&gt;
+</code></pre>
+
 <h3 id="other">other</h3>
 <ul>
 <li><code>deploymentModule</code> name of the deployment-module the drush-method enables when doing a deploy</li>

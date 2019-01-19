@@ -156,7 +156,7 @@
             <div class="section">
               
                 <h1 id="local-overrides">Local overrides</h1>
-<p><code>fabfile.local.yaml</code> is used to override parts of your fabfile-configuration. If you run a fab-command the code will try to find the <code>fabfile.local.yaml</code> up to three folder levels up and merge the data with your fabfile.yaml.</p>
+<p><code>fabfile.local.yaml</code> is used to override parts of your fabfile-configuration. If you run a fab-command the code will try to find a <code>fabfile.local.yaml</code> up to five folder levels up, or in your user-folder (<code>~/.fabfile.local.yaml</code>) and merge the data with your fabfile.yaml.</p>
 <p>A small example:</p>
 <pre><code>fabfile.local.yaml
 + project
