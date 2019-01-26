@@ -183,7 +183,7 @@
 </ul>
 <p>The tasks can use the pattern-replacement used in other parts of phabalicious to get data from the docker-config or from the host-config into the tasks. Here's a small example:</p>
 <pre><code class="yaml">tasks:
-  run: 
+  run:
     - echo &quot;running container %host.docker.name% for config %host.configName% in %dockerHost.rootFolder%
 </code></pre>
 
@@ -236,7 +236,7 @@ docker run
 <pre><code class="yaml">dockerHosts:
   testB:
     rootFolder: /some/other/folder
-    inheritsFrom: 
+    inheritsFrom:
       - https://some.host/docker.yml
       - https://some.host/docker-compose.yml
 </code></pre>
@@ -254,12 +254,13 @@ docker run
 </code></pre>
 
 <h3 id="copysshkeystodocker">copySSHKeysToDocker</h3>
-<p>This command will copy the referenced files from your local computer into the docker container and set the permissions so ssh can use the copied data. </p>
+<p>This command will copy the referenced files from your local computer into the docker container and set the permissions so ssh can use the copied data.</p>
 <p>These are the needed global settings in the fabfile:</p>
 <ul>
 <li><code>dockerKeyFile</code> will copy the referenced private key and its public key into the container</li>
 <li><code>dockerAuthorizedKeyFile</code>, the <code>authorized_keys</code>-file, can be a path to a file or an url</li>
 <li><code>dockerKnownHostsFile</code>, the <code>known_hosts</code>-file</li>
+<li><code>dockerNetRcFile</code>, will copy a <code>.netrc</code>-file into the container (suitable for authenticating against https repositories)</li>
 </ul>
 <p>Obviously a ssh-demon should be running inside your docker-container.</p>
 <h2 id="predefined-docker-tasks">Predefined docker-tasks</h2>
@@ -269,7 +270,7 @@ docker run
 <li><code>spinDown</code>: stop all app-containers</li>
 <li><code>deleteContainer</code>: remove and delete all app container</li>
 </ul>
-<p>If you want to support this in your configuration, add the tasks to the fabfile and its corresponding commands. </p>
+<p>If you want to support this in your configuration, add the tasks to the fabfile and its corresponding commands.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>As you can see, there's not much docker-specific besides the naming. So in theory you can control something else like <code>rancher</code> or maybe even <code>kubectl</code>. All you have is the referencing between a host and a dockerHost and the possibility to run tasks locally or via SSH on a remote instance, and pass data from the host-config or docker-config to your scripts.</p>
               

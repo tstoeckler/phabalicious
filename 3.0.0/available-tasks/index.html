@@ -671,7 +671,8 @@ phab --config=&lt;your-config&gt; deploy &lt;branch-to-deploy&gt;
 <p>This will copy the ssh-keys into the docker-instance. You'll need to provide the paths to the files via the three configurations:
 <em> <code>dockerKeyFile</code>, the path to the private ssh-key to use.
 </em> <code>dockerAuthorizedKeyFile</code>, the path to the file for <code>authoried_keys</code> or a url.
-* <code>dockerKnownHostsFile</code>, the path to the file for <code>known_hosts</code></p>
+<em> <code>dockerKnownHostsFile</code>, the path to the file for <code>known_hosts</code>
+</em> <code>dockerNetRcFile</code>, the path to a <code>.netrc</code>-file to copy into the container. This is helpful if you are using https-repositories and want to authenticate against them.</p>
 <p>As docker-container do not have any state, this task is used to copy any necessary ssh-configuration into the docker-container, so communication per ssh does not need any passwords.</p>
 <h3 id="waitforservices">waitForServices</h3>
 <p>This task will try to run <code>supervisorctl status</code> in the container and  waits until all services are running. This is useful in scripts to wait for any services that need some time to start up. Obviously this task depends on <code>supervisorctl</code>.</p>

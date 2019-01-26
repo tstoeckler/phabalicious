@@ -98,6 +98,8 @@
     
         <ul>
         
+            <li><a class="toctree-l3" href="#the-questions-section">The questions-section</a></li>
+        
             <li><a class="toctree-l3" href="#the-scaffold-section">The scaffold-section</a></li>
         
             <li><a class="toctree-l3" href="#the-variables-section">the variables-section</a></li>
@@ -174,7 +176,16 @@
                 <h1 id="scaffolding-a-new-app">Scaffolding a new app</h1>
 <p>Phabalicious has a simple but powerful scaffold-command. It will read a yml-file and interpret the contents. It will use the existing pattern-replacement used for scripts and twig for changing file-contents. The scaffolding and fixture-files can live remotely or on your file-system.</p>
 <p>Here's an example of a scaffold-file:</p>
-<pre><code class="yaml">variables:
+<pre><code class="yaml">questions:
+  name:
+    question: &quot;The Name of this project&quot;
+  shortName:
+    question: &quot;The short-name of this project&quot;
+    validation: &quot;/^[A-Za-z0-9]{3,5}$/&quot;
+    error: &quot;The shortname may consist of 3 to 5 letters (A-Z) or digits (0-9)&quot;
+    transform: lowercase
+
+variables:
   composerProject: drupal-composer/drupal-project:8.x-dev
   webRoot: web
 
@@ -200,7 +211,41 @@ scaffold:
   - cd %rootFolder%; git commit -m &quot;Initial commit by phabalicious&quot;
 </code></pre>
 
-<p>The fabfile needs at least the <code>scaffold</code>-section. The <code>scaffold</code>-section is a list of commands, executed by phabalicious one by one. It will use the pattern-replacement known for scripts.</p>
+<p>The fabfile needs at least the <code>questions</code>and the <code>scaffold</code>-section. The <code>scaffold</code>-section is a list of commands, executed by phabalicious one by one. It will use the pattern-replacement known for scripts.</p>
+<h2 id="the-questions-section">The <code>questions</code>-section</h2>
+<p>This section contains a list of questions to be asked when running the scaffold-command. The yaml-key will get the value inputted by the user and can be used as a replacement pattern or in twig-templates. Answers can be validated against a regex and/or transformed to lower- or uppercase.</p>
+<p>An example:</p>
+<pre><code>questions:
+  &lt;key&gt;: 
+    question: &lt;the text to display&gt;
+    validation: &lt;the regex to check the input against to&gt;
+    error: &lt;the error message to display, when validation fails&gt;
+    transform: &lt;lowercase|uppercase&gt;
+</code></pre>
+
+<p>For non-interactive usage you can pass the values via commandline-options, where the option-name is the same as the key, for the above example: </p>
+<table>
+<thead>
+<tr>
+<th>command-line option</th>
+<th>Question key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--\&lt;key></td>
+<td>\&lt;key></td>
+</tr>
+<tr>
+<td>--name</td>
+<td>name</td>
+</tr>
+<tr>
+<td>--short-name</td>
+<td>shortName</td>
+</tr>
+</tbody>
+</table>
 <h2 id="the-scaffold-section">The <code>scaffold</code>-section</h2>
 <p>Phabalicious will provide the following replacement-patterns out of the box:</p>
 <table>
