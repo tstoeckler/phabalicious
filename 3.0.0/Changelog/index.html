@@ -118,6 +118,8 @@
     
         <ul>
         
+            <li><a class="toctree-l3" href="#301-2019-02-25">3.0.1 / 2019-02-25</a></li>
+        
             <li><a class="toctree-l3" href="#300-2019-02-14">3.0.0 / 2019-02-14</a></li>
         
             <li><a class="toctree-l3" href="#300-beta6-2019-02-08">3.0.0-beta.6 / 2019-02-08</a></li>
@@ -186,31 +188,40 @@
             <div class="section">
               
                 <h1 id="changelog">Changelog</h1>
-<h2 id="300-2019-02-14">3.0.0 / 2019-02-14</h2>
+<h2 id="301-2019-02-25">3.0.1 / 2019-02-25</h2>
 <h3 id="fixed">Fixed</h3>
+<ul>
+<li>Fix a bug in docker:getIpAddress when using the service keyword and the container is not running.</li>
+</ul>
+<h3 id="new">New</h3>
+<ul>
+<li>Add a new stage <code>prepareDestination</code> for <code>app:create</code></li>
+</ul>
+<h2 id="300-2019-02-14">3.0.0 / 2019-02-14</h2>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li>Increase timeout for non-interactive processes.</li>
 <li><code>restore:sql-from-file</code>: Run a preparation method so tunnels are in place before running the actual scp</li>
 <li><code>copy-from files</code>: Fix for "too many arguments" error message of rsync</li>
 </ul>
 <h2 id="300-beta6-2019-02-08">3.0.0-beta.6 / 2019-02-08</h2>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li>.netrc is optional, show a warning if not found, instead of breaking the flow (Fixes #27)</li>
 </ul>
 <h2 id="300-beta5-2019-02-05">3.0.0-beta.5 / 2019-02-05</h2>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>fixes a bug resolving remote assets for app:scaffold</li>
 </ul>
 <h2 id="300-beta4-2019-01-28">3.0.0-beta.4 / 2019-01-28</h2>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li>Exit early after app-update to prevent php exception because of missing files. (Fixes #24)</li>
 <li>Make update-check more robust</li>
 </ul>
 <h2 id="300-beta3-2019-01-26">3.0.0-beta.3 / 2019-01-26</h2>
-<h3 id="new">New</h3>
+<h3 id="new_1">New</h3>
 <ul>
 <li>Add transform to questions, update documentation, fix tests</li>
 <li>Refactor questions in <code>app:scaffold</code> questions are now part of the scaffold.yml</li>
@@ -218,12 +229,12 @@
 <li>New command <code>jira</code>which will show all open tickets for the given project and user. (#22)</li>
 </ul>
 <h2 id="300-beta2-2019-01-19">3.0.0-beta.2 / 2019-01-19</h2>
-<h3 id="new_1">New</h3>
+<h3 id="new_2">New</h3>
 <ul>
 <li>Add support for .fabfile.local.yaml in user-folder</li>
 <li>Show a message when a new version of phabalicious is available.</li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li>Documentation for the new jira-command (#22)</li>
 <li>Remove trailing semicolon (Fixes #23)</li>
@@ -231,7 +242,7 @@
 <li>Fix shell-completion</li>
 </ul>
 <h2 id="300-beta1-2019-01-10">3.0.0-beta.1 / 2019-01-10</h2>
-<h3 id="fixed_5">fixed</h3>
+<h3 id="fixed_6">fixed</h3>
 <ul>
 <li>Fix logic error in InstallCommand, add testcases (Fixes #21)</li>
 <li>Wrap interactive shell with bash only if we have a command to execute</li>
@@ -241,7 +252,7 @@
 <li>Add autocompletion for <code>install-from</code></li>
 </ul>
 <h2 id="300-alpha8-2018-12-20">3.0.0-alpha.8 / 2018-12-20</h2>
-<h3 id="fixed_6">fixed</h3>
+<h3 id="fixed_7">fixed</h3>
 <ul>
 <li>Call overridden methods only one time, add missin reset-implementation to platform-method (fixes #14)</li>
 <li>Increase verbosity of app:scaffold</li>
@@ -252,7 +263,7 @@
 <li>Run drupalconsole in an interactive shell</li>
 </ul>
 <h2 id="300-alpha7-2018-12-14">3.0.0-alpha.7 / 2018-12-14</h2>
-<h3 id="fixed_7">fixed</h3>
+<h3 id="fixed_8">fixed</h3>
 <ul>
 <li>Handle app-options correctly when doing shell-autocompletion (Fixes #12)</li>
 <li>Silent warnings when doing autocompletion (fixes #11)</li>
@@ -263,7 +274,7 @@
 <li>Better defaults for lftp</li>
 </ul>
 <h2 id="300-alpha6-2018-12-11">3.0.0-alpha.6 / 2018-12-11</h2>
-<h3 id="fixed_8">fixed</h3>
+<h3 id="fixed_9">fixed</h3>
 <ul>
 <li>Some bugfixes for ftp-deployments</li>
 <li>Nicer output</li>
@@ -272,13 +283,13 @@
 <li>Set version number, when not bundling as phar</li>
 </ul>
 <h2 id="300-alpha5-2018-12-08">3.0.0-alpha.5 / 2018-12-08</h2>
-<h3 id="fixed_9">fixed</h3>
+<h3 id="fixed_10">fixed</h3>
 <ul>
 <li>Use real version number</li>
 <li>Fix phar-build</li>
 </ul>
 <h2 id="300-alpha4-2018-12-08">3.0.0-alpha.4 / 2018-12-08</h2>
-<h3 id="new_2">new</h3>
+<h3 id="new_3">new</h3>
 <ul>
 <li>New command <code>self-update</code>, will download and install the latest available version</li>
 <li>New method <code>ftp-sync</code> to deploy code-bases to a remote ftp-instance</li>
@@ -288,7 +299,7 @@
 <ul>
 <li>Switch to box for building phars</li>
 </ul>
-<h3 id="fixed_10">fixed</h3>
+<h3 id="fixed_11">fixed</h3>
 <ul>
 <li>Do not run empty script lines (Fixes #8)</li>
 <li>Set folder for script-phase</li>

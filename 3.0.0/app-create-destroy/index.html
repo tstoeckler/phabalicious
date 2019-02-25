@@ -178,6 +178,7 @@
 <p>These are the standard stages. You can override them by adding them to the global section of your fabfile:</p>
 <pre><code class="yaml">appStages:
   create:
+    - stage: prepareDestination
     - stage: installCode
     - stage: spinUp
     - stage: installDependencies
