@@ -118,6 +118,10 @@
     
         <ul>
         
+            <li><a class="toctree-l3" href="#303-2019-03-07">3.0.3 / 2019-03-07</a></li>
+        
+            <li><a class="toctree-l3" href="#302-2019-03-01">3.0.2 / 2019-03-01</a></li>
+        
             <li><a class="toctree-l3" href="#301-2019-02-25">3.0.1 / 2019-02-25</a></li>
         
             <li><a class="toctree-l3" href="#300-2019-02-14">3.0.0 / 2019-02-14</a></li>
@@ -188,8 +192,28 @@
             <div class="section">
               
                 <h1 id="changelog">Changelog</h1>
-<h2 id="301-2019-02-25">3.0.1 / 2019-02-25</h2>
+<h2 id="303-2019-03-07">3.0.3 / 2019-03-07</h2>
 <h3 id="fixed">Fixed</h3>
+<ul>
+<li>Use progressbar when scaffolding more then 3 asset-files</li>
+<li>FIx a regression for task-specific scripts. (Fixes #31)</li>
+<li>Make sure, that task-specific scripts are run. (Fixes #31)</li>
+<li>Add a notification before starting a db dump (Fixes #30 and #33)</li>
+<li>If no unstable update is available, try the stable branch (Fixes #34)</li>
+</ul>
+<h2 id="302-2019-03-01">3.0.2 / 2019-03-01</h2>
+<h3 id="fixed_1">Fixed</h3>
+<ul>
+<li>Fix scaffolding of empty files via http</li>
+<li>Add support to limit files handled by twig by an extension as third parameter to copy_assets</li>
+<li>Add support for a dedicated projectFolder, add support for dependent variables, so you can compose variables from other variables</li>
+<li>strip first subfolder from filenames to copy when running app:scaffold, keep folder hierarchy for subsequents folders</li>
+<li>Refactor TaskContext::getStyle to TaskContext::io for clearer code</li>
+<li>Fix a bug on copyFrom for specific multi.site setups</li>
+<li>Fix bug when running app:scaffold where stages do not fire existing docker-tasks</li>
+</ul>
+<h2 id="301-2019-02-25">3.0.1 / 2019-02-25</h2>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li>Fix a bug in docker:getIpAddress when using the service keyword and the container is not running.</li>
 </ul>
@@ -198,24 +222,24 @@
 <li>Add a new stage <code>prepareDestination</code> for <code>app:create</code></li>
 </ul>
 <h2 id="300-2019-02-14">3.0.0 / 2019-02-14</h2>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>Increase timeout for non-interactive processes.</li>
 <li><code>restore:sql-from-file</code>: Run a preparation method so tunnels are in place before running the actual scp</li>
 <li><code>copy-from files</code>: Fix for "too many arguments" error message of rsync</li>
 </ul>
 <h2 id="300-beta6-2019-02-08">3.0.0-beta.6 / 2019-02-08</h2>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li>.netrc is optional, show a warning if not found, instead of breaking the flow (Fixes #27)</li>
 </ul>
 <h2 id="300-beta5-2019-02-05">3.0.0-beta.5 / 2019-02-05</h2>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li>fixes a bug resolving remote assets for app:scaffold</li>
 </ul>
 <h2 id="300-beta4-2019-01-28">3.0.0-beta.4 / 2019-01-28</h2>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_6">Fixed</h3>
 <ul>
 <li>Exit early after app-update to prevent php exception because of missing files. (Fixes #24)</li>
 <li>Make update-check more robust</li>
@@ -234,7 +258,7 @@
 <li>Add support for .fabfile.local.yaml in user-folder</li>
 <li>Show a message when a new version of phabalicious is available.</li>
 </ul>
-<h3 id="fixed_5">Fixed</h3>
+<h3 id="fixed_7">Fixed</h3>
 <ul>
 <li>Documentation for the new jira-command (#22)</li>
 <li>Remove trailing semicolon (Fixes #23)</li>
@@ -242,7 +266,7 @@
 <li>Fix shell-completion</li>
 </ul>
 <h2 id="300-beta1-2019-01-10">3.0.0-beta.1 / 2019-01-10</h2>
-<h3 id="fixed_6">fixed</h3>
+<h3 id="fixed_8">fixed</h3>
 <ul>
 <li>Fix logic error in InstallCommand, add testcases (Fixes #21)</li>
 <li>Wrap interactive shell with bash only if we have a command to execute</li>
@@ -252,7 +276,7 @@
 <li>Add autocompletion for <code>install-from</code></li>
 </ul>
 <h2 id="300-alpha8-2018-12-20">3.0.0-alpha.8 / 2018-12-20</h2>
-<h3 id="fixed_7">fixed</h3>
+<h3 id="fixed_9">fixed</h3>
 <ul>
 <li>Call overridden methods only one time, add missin reset-implementation to platform-method (fixes #14)</li>
 <li>Increase verbosity of app:scaffold</li>
@@ -263,7 +287,7 @@
 <li>Run drupalconsole in an interactive shell</li>
 </ul>
 <h2 id="300-alpha7-2018-12-14">3.0.0-alpha.7 / 2018-12-14</h2>
-<h3 id="fixed_8">fixed</h3>
+<h3 id="fixed_10">fixed</h3>
 <ul>
 <li>Handle app-options correctly when doing shell-autocompletion (Fixes #12)</li>
 <li>Silent warnings when doing autocompletion (fixes #11)</li>
@@ -274,7 +298,7 @@
 <li>Better defaults for lftp</li>
 </ul>
 <h2 id="300-alpha6-2018-12-11">3.0.0-alpha.6 / 2018-12-11</h2>
-<h3 id="fixed_9">fixed</h3>
+<h3 id="fixed_11">fixed</h3>
 <ul>
 <li>Some bugfixes for ftp-deployments</li>
 <li>Nicer output</li>
@@ -283,7 +307,7 @@
 <li>Set version number, when not bundling as phar</li>
 </ul>
 <h2 id="300-alpha5-2018-12-08">3.0.0-alpha.5 / 2018-12-08</h2>
-<h3 id="fixed_10">fixed</h3>
+<h3 id="fixed_12">fixed</h3>
 <ul>
 <li>Use real version number</li>
 <li>Fix phar-build</li>
@@ -299,7 +323,7 @@
 <ul>
 <li>Switch to box for building phars</li>
 </ul>
-<h3 id="fixed_11">fixed</h3>
+<h3 id="fixed_13">fixed</h3>
 <ul>
 <li>Do not run empty script lines (Fixes #8)</li>
 <li>Set folder for script-phase</li>

@@ -350,6 +350,10 @@ The main use-case is to run different scripts per type, see the <code>common</co
 </ul>
 </li>
 </ul>
+<h3 id="configuration-of-the-mattermost-method">Configuration of the mattermost-method</h3>
+<ul>
+<li><code>notifyOn</code>: a list of all tasks where to send a message to a Mattermost channel. Have a look at the global Mattermost-configuration-example below.</li>
+</ul>
 <h3 id="dockerhosts">dockerHosts</h3>
 <p><code>dockerHosts</code> is similar structured as the <code>hosts</code>-entry. It's a keyed lists of hosts containing all necessary information to create a ssh-connection to the host, controlling the docker-instances, and a list of tasks, the user might call via the <code>docker</code>-command. See the <code>docker</code>-entry for a more birds-eye-view of the concepts.</p>
 <p>Here's an example <code>dockerHosts</code>-entry:</p>
@@ -444,6 +448,35 @@ The main use-case is to run different scripts per type, see the <code>common</co
 <p>The command will use the global <code>key</code> as project-key, you can override that via the following configuration:</p>
 <pre><code>jira:
   projectKey: &lt;jira project-key&gt;
+</code></pre>
+
+<h3 id="mattermost">mattermost</h3>
+<p>Phabalicious can send notifications to a running Mattermost instance. You need to create an incoming web hook in your instance and pass this to your configuration. Here's an example</p>
+<pre><code>mattermost:
+  username: phabalicious
+  webhook: https://chat.your.server.tld/hooks/... 
+  Channel: &quot;my-channel&quot;
+
+hosts:
+  test:
+    needs:
+      - mattermost
+    notifyOn:
+      - deploy
+      - reset
+</code></pre>
+
+<ul>
+<li><code>mattermost</code> contains all global mattermost config.<ul>
+<li><code>username</code> the username to post messages as</li>
+<li><code>webhook</code> the address of the web-hook</li>
+<li><code>channel</code> the channel to post the message to</li>
+</ul>
+</li>
+<li><code>notifyOn</code> is a list of tasks which should send a notification</li>
+</ul>
+<p>You can test the Mattermost config via</p>
+<pre><code>phab notify &quot;hello world&quot; --config &lt;your-config&gt;
 </code></pre>
 
 <h3 id="other">other</h3>
